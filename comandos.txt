@@ -1,0 +1,3 @@
+## comandos
+
+npx react-native init PokeGql --template react-native-template-typescript
