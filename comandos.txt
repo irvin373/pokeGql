@@ -1,3 +1,7 @@
 ## comandos
 
 npx react-native init PokeGql --template react-native-template-typescript
+cd PokeGql
+npm install --save react-native-navigation
+npx rnn-link
+pod install --project-directory=ios
