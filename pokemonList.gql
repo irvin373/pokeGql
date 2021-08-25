@@ -1,0 +1,15 @@
+query getPokemon($limit: Int, $offset: Int) {
+  pokemons: pokemon_v2_pokemonspecies(
+    limit: $limit,
+    offset: $offset,
+    order_by: {id: asc}
+  ){
+    id
+    name
+  }
+  total_counter: pokemon_v2_pokemonspecies_aggregate{
+      aggregate{
+        count
+      }
+    }
+}
