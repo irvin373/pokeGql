@@ -40,6 +40,12 @@ query getPokemonById($id: Int!) {
   info: pokemon_v2_pokemonspecies_by_pk(id: $id) {
     id
     name
+    description: pokemon_v2_pokemonspeciesflavortexts(where: {id: {_eq: $id}}){
+      flavor_text,
+      version: pokemon_v2_version{
+        name
+      }
+    }
     habitad: pokemon_v2_pokemonhabitat{
       name
     }

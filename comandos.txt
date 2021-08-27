@@ -11,9 +11,9 @@ npm install @apollo/client graphql
 
 
 ## links
-https://github.com/xotahal/react-native-material-ui
-https://wix.github.io/react-native-navigation/
-
+libreria material: https://github.com/xotahal/react-native-material-ui
+react native navigation: https://wix.github.io/react-native-navigation/
+agregar fonts: https://www.bigbinary.com/learn-react-native/adding-custom-fonts
 uri graphql: https://beta.pokeapi.co/graphql/v1beta
 
 # UI UX
