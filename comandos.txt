@@ -23,6 +23,7 @@ https://material.io/
 # graphql
 https://www.apollographql.com/docs/react/integrations/react-native/
 https://beta.pokeapi.co/graphql/console/
+https://graphql-pokeapi.graphcdn.app/
 https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png
 
 #collecciones de queries necesarias para el proyecto:

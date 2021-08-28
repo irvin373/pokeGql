@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import MyText from '../../components/MyText.component';
 import {getPokemons} from '../../service/pokemonApi';
+import colors from '../../Utils/colors';
 
 type Pokemon = {
   name: string
@@ -38,22 +40,42 @@ const HomeScreen = (props: any) => {
   }
 
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [offtet, setOffset] = useState(25);
   const renderPokemonInfo = ({item}: {item: Pokemon}) =>
   <TouchableOpacity onPress={() => {goToDetails(item)}} style={cardStyles.shadow}>
-    <View style={[cardStyles.container, {margin: 10}]}>
+    <View style={[cardStyles.container, {margin: 10, flexDirection: 'row'}]}>
       <Image style={{height: 100, width: 100}} source={{uri: getPokemonImageUri(item.id)}} />
-      <Text>{item.name}</Text>
+      <View style={{marginLeft: 12}}>
+        <MyText size='big' title={item.name} />
+        <MyText size='small' color={colors.lightGray} title={`#${item.id}`} />
+      </View>
     </View>
   </TouchableOpacity>
 
-  getPokemons(25).then((data: any) => {
-    setPokemons(data.pokemons);
-  })
+  const getMorePokemons = () => {
+    getPokemons(25, offtet).then((data: any) => {
+      setPokemons([...pokemons, ...data.pokemons.results]);
+      setOffset(offtet + 25);
+    }).catch(e => {
+      console.log(e);
+    })
+  }
+
+  useEffect(() => {
+    getPokemons(25).then((data: any) => {
+      setPokemons(data.pokemons.results);
+    }).catch(e => {
+      console.log(e);
+    })
+  }, []);
   return (
     <View style={{flex: 1}}>
       <FlatList
         data={pokemons}
+        keyExtractor={(item) => `${item.id}`}
         renderItem={renderPokemonInfo}
+        onEndReached={getMorePokemons}
+        onEndReachedThreshold={10}
       />
     </View>
   );

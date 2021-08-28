@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, gql } from '@apollo/client';
 
 const httpLink = createHttpLink({
-  uri: 'https://beta.pokeapi.co/graphql/v1beta'
+  // uri: 'https://beta.pokeapi.co/graphql/v1beta'
+  uri: 'https://graphql-pokeapi.graphcdn.app/'
 })
 
 const client = new ApolloClient({
@@ -13,6 +14,23 @@ const client = new ApolloClient({
     }
   }
 });
+
+const GET_POKEMON2 = gql`
+query pokemons($limit: Int, $offset: Int) {
+  pokemons(limit: $limit, offset: $offset) {
+    count
+    next
+    previous
+    status
+    message
+    results {
+      id
+      name
+      image
+    }
+  }
+}
+`;
 
 const GET_POKEMON = gql`
   query getPokemon($limit: Int, $offset: Int) {
@@ -81,7 +99,7 @@ query getPokemonById($id: Int!) {
 
 export const getPokemons = async (limit: number, offset: number = 0) : Promise<any | null> => {
   const res = await client.query({
-    query: GET_POKEMON,
+    query: GET_POKEMON2,
     variables: {
       limit,
       offset

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextProps, TextStyle, StyleProp } from 'react-native';
+import { Text, StyleSheet, TextProps } from 'react-native';
 import colors from '../Utils/colors';
 
 type sizeType = 'big' | 'normal' | 'small';
