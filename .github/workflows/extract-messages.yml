@@ -24,5 +24,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run extract:messages
+    - run: git add comandos.txt
     - run: git commit -m "🤖 extracted messages"
     - run: git push
