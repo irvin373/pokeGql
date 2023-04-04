@@ -26,4 +26,3 @@ jobs:
     - run: npm run extract:messages
     - run: chmod +x ./scripts/test.sh
     - run: ./scripts/test.sh
-    shell: bash
