@@ -24,7 +24,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run extract:messages
-    - run: |
+    run: |
       if [[ `git status --porcelain` ]]; then
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -33,3 +33,4 @@ jobs:
         git push
         exit 0
       fi
+    shell: bash
